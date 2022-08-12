@@ -13,9 +13,27 @@ button.button1{
     margin-top:0.4cm;
     position:absolute;
 }
+button.button2{
+    margin-left: 11cm;
+    margin-top:0.4cm;
+    position:absolute;
+}
+button.button3{
+    margin-left: 14cm;
+    margin-top:0.4cm;
+    position:absolute;
+}
+button.button4{
+    margin-left: 17cm;
+    margin-top:0.4cm;
+    position:absolute;
+}
 div.array_bar{
     width:2px;
     background-color: turquoise;
     display: inline-block;
     margin: 0 1px;
+}
+body{
+    background-color: black;
 }

@@ -82,8 +82,6 @@ class App extends React.Component {
                     c++;
                     animations.push(animation);
                 }
-                
-
             }
         }
         console.log('HELLO ' + c + " iterations");
@@ -105,11 +103,19 @@ class App extends React.Component {
     }
 
     testAlgo = () => {
-        const animations = this.bblSort(this.state.arr)
-        console.log('Animations length '+animations.length)
-        for(let i=0;i<1000;i++){
-            console.log('NO '+animations[i].compare+' and '+animations[i].swap);
+        const animations = this.bblSort(this.state.arr);
+        const newAnimations = [];
+        console.log('Animations length ' + animations.length)
+        for (const animie of animations) {
+            newAnimations.push(animie.compare);
+            newAnimations.push(animie.compare);
+            newAnimations.push(animie.swap);
         }
+        // console.log('newAnimations length ' + newAnimations.length)
+        // console.log(newAnimations);
+        //for (let i = 0; i < 1000; i++) {
+        //   console.log('NO ' + animations[i].compare + ' and ' + animations[i].swap);
+        // }
         // const arrayBars = document.getElementsByClassName('array_bar');
         // arrayBars[10].style.backgroundColor = 'red';
         // arrayBars[200].style.backgroundColor = 'red';
@@ -118,23 +124,70 @@ class App extends React.Component {
         // console.log(h1+' and '+h2)
         // arrayBars[10].style.height = h2;
         // arrayBars[200].style.height = h1;
+
+        for (let i = 0; i < newAnimations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array_bar');
+            const colorchange = (i % 3) !== 2;
+            if (colorchange) {
+                const [barOneIdx, barTwoIdx] = newAnimations[i];
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                const color = (i % 3) === 0 ? 'red' : 'turquoise';
+                setTimeout(() => {
+                    console.log(color)
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                    if (color === 'red') {
+                        setTimeout(() => {
+                            const [barOneIdx, barTwoIdx] = newAnimations[i];
+                            var h1 = arrayBars[barOneIdx].style.height
+                            var h2 = arrayBars[barTwoIdx].style.height
+                            arrayBars[barOneIdx].style.height = h2;
+                            arrayBars[barTwoIdx].style.height = h1;
+                            //barTwoStyle.backgroundColor = 'violet';
+                        }, 1);
+                    }
+                }, i * 3);
+            }
+        }
         for (let i = 0; i < animations.length; i++) {
-            const { compare, swap } = animations[i];
-            console.log("ith element is "+animations[i].compare)
             setTimeout(() => {
                 const arrayBars = document.getElementsByClassName('array_bar');
-                arrayBars[compare[1]].style.backgroundColor = 'red';
-                arrayBars[compare[0]].style.backgroundColor = 'red';
-                var h1=arrayBars[swap[0]].style.height
-                var h2=arrayBars[swap[1]].style.height
-                arrayBars[swap[0]].style.height = h2;
-                arrayBars[swap[1]].style.height = h1;
-                setTimeout(() => {
-                    arrayBars[compare[1]].style.backgroundColor = 'turquoise'
-                    arrayBars[compare[0]].style.backgroundColor = 'turquoise'
-                },(i+1)*10);
-            },i*10);
+                arrayBars[compare[0]].style.backgroundColor = 'violet';
+                arrayBars[compare[1]].style.backgroundColor = 'violet';
+            }, i + 2
+            )
         }
+        // else {
+        //     setTimeout(() => {
+        //         const [barOneIdx, barTwoIdx] = newAnimations[i];
+        //         var h1 = arrayBars[barOneIdx].style.height
+        //         var h2 = arrayBars[barTwoIdx].style.height
+        //         arrayBars[barOneIdx].style.height = h1;
+        //         arrayBars[barTwoIdx].style.height = h2;
+        //     }, i * 10);
+        // }
+        /*   const { compare, swap } = animations[i];
+           console.log("ith element is " + animations[i].compare)
+           setTimeout(() => {
+               const arrayBars = document.getElementsByClassName('array_bar');
+               arrayBars[compare[1]].style.backgroundColor = 'red';
+               arrayBars[compare[0]].style.backgroundColor = 'red';
+               var h1 = arrayBars[compare[1]].style.height
+               var h2 = arrayBars[compare[0]].style.height
+               arrayBars[compare[1]].style.height = h2;
+               arrayBars[compare[0]].style.height = h1;
+               setTimeout(() => {
+                   arrayBars[compare[1]].style.backgroundColor = 'torquoise'
+                   arrayBars[compare[0]].style.backgroundColor = 'torquoise'
+               }, (i + 1) * 10);
+ 
+           }, i * 10);*/
+
+    }
+
+    createClick = () => {
+
     }
 
     render() {
@@ -142,7 +195,10 @@ class App extends React.Component {
         return (
             <div className="array_contain">
                 <button onClick={this.createArray} className="button">CREATE</button>
-                <button onClick={this.testAlgo} className="button1">TEST</button>
+                <button onClick={this.testAlgo} className="button1">Bubble Sort</button>
+                <button onClick={this.testAlgo} className="button2">Quick Sort</button>
+                <button onClick={this.testAlgo} className="button3">Merge Sort</button>
+                <button onClick={this.testAlgo} className="button4">Heap Sort</button>
                 {
                     arr.map((value, i) => (
                         <div className="array_bar"
