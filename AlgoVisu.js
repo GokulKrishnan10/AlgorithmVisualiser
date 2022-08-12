@@ -147,17 +147,19 @@ class App extends React.Component {
                             //barTwoStyle.backgroundColor = 'violet';
                         }, 1);
                     }
-                }, i * 3);
+                }, i*3);
             }
         }
-        for (let i = 0; i < animations.length; i++) {
-            setTimeout(() => {
-                const arrayBars = document.getElementsByClassName('array_bar');
-                arrayBars[compare[0]].style.backgroundColor = 'violet';
-                arrayBars[compare[1]].style.backgroundColor = 'violet';
-            }, i + 2
-            )
-        }
+        // for (let i = 0; i < animations.length; i++) {
+        //     console.log(i)
+        //     setTimeout(() => {
+        //         const { compare, swap } = animations[i];
+        //         const arrayBars = document.getElementsByClassName('array_bar');
+        //         arrayBars[compare[0]].style.backgroundColor = 'violet';
+        //         arrayBars[compare[1]].style.backgroundColor = 'violet';
+        //     }, i*4
+        //     )
+        // }
         // else {
         //     setTimeout(() => {
         //         const [barOneIdx, barTwoIdx] = newAnimations[i];
