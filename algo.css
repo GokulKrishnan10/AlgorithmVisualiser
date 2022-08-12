@@ -1,0 +1,21 @@
+div.array_contain{
+    margin-left: 1cm;
+    position: absolute;
+    left:10px;
+
+}
+button.button{
+    margin-top:0.4cm;
+    position:absolute;
+}
+button.button1{
+    margin-left: 8cm;
+    margin-top:0.4cm;
+    position:absolute;
+}
+div.array_bar{
+    width:2px;
+    background-color: turquoise;
+    display: inline-block;
+    margin: 0 1px;
+}
