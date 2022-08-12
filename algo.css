@@ -6,25 +6,26 @@ div.array_contain{
 }
 button.button{
     margin-top:0.4cm;
+    margin-left: 9cm;
     position:absolute;
 }
 button.button1{
-    margin-left: 8cm;
+    margin-left: 12cm;
     margin-top:0.4cm;
     position:absolute;
 }
 button.button2{
-    margin-left: 11cm;
+    margin-left: 15cm;
     margin-top:0.4cm;
     position:absolute;
 }
 button.button3{
-    margin-left: 14cm;
+    margin-left: 18cm;
     margin-top:0.4cm;
     position:absolute;
 }
 button.button4{
-    margin-left: 17cm;
+    margin-left: 21cm;
     margin-top:0.4cm;
     position:absolute;
 }
@@ -36,4 +37,17 @@ div.array_bar{
 }
 body{
     background-color: black;
+}
+div.navBar{
+    margin-top:0.1cm;
+    color: aliceblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    background-color: navy;
+    height: 1.5cm;
+    width: 40cm;
+}
+h3{
+    position: absolute;
+    margin-left:2cm;
 }

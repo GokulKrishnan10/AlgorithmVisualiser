@@ -57,7 +57,7 @@ class App extends React.Component {
         const arr = []
         for (let i = 0; i < 360; i++) {
             arr.push(
-                getRandomArbitrary(0, 700) | 0
+                getRandomArbitrary(0, 650) | 0
             )
         }
         this.setState(
@@ -147,7 +147,7 @@ class App extends React.Component {
                             //barTwoStyle.backgroundColor = 'violet';
                         }, 1);
                     }
-                }, i*3);
+                }, i * 3);
             }
         }
         // for (let i = 0; i < animations.length; i++) {
@@ -196,11 +196,15 @@ class App extends React.Component {
         const { arr } = this.state
         return (
             <div className="array_contain">
-                <button onClick={this.createArray} className="button">CREATE</button>
-                <button onClick={this.testAlgo} className="button1">Bubble Sort</button>
-                <button onClick={this.testAlgo} className="button2">Quick Sort</button>
-                <button onClick={this.testAlgo} className="button3">Merge Sort</button>
-                <button onClick={this.testAlgo} className="button4">Heap Sort</button>
+                <div className="navBar">
+                    <h3>Sorting Algorithm Visualiser</h3>
+                    <button onClick={this.createArray} className="button">CREATE</button>
+                    <button onClick={this.testAlgo} className="button1">Bubble Sort</button>
+                    <button onClick={this.testAlgo} className="button2">Quick Sort</button>
+                    <button onClick={this.testAlgo} className="button3">Merge Sort</button>
+                    <button onClick={this.testAlgo} className="button4">Heap Sort</button>
+                    <h4></h4>
+                </div>
                 {
                     arr.map((value, i) => (
                         <div className="array_bar"
