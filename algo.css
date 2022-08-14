@@ -2,29 +2,33 @@ div.array_contain{
     margin-left: 1cm;
     position: absolute;
     left:10px;
-
 }
 button.button{
+    font-weight: bold;
     margin-top:0.4cm;
     margin-left: 9cm;
     position:absolute;
 }
 button.button1{
+    font-weight: bold;
     margin-left: 12cm;
     margin-top:0.4cm;
     position:absolute;
 }
 button.button2{
+    font-weight: bold;
     margin-left: 15cm;
     margin-top:0.4cm;
     position:absolute;
 }
 button.button3{
+    font-weight: bold;
     margin-left: 18cm;
     margin-top:0.4cm;
     position:absolute;
 }
 button.button4{
+    font-weight: bold;
     margin-left: 21cm;
     margin-top:0.4cm;
     position:absolute;
@@ -33,7 +37,7 @@ div.array_bar{
     width:2px;
     background-color: turquoise;
     display: inline-block;
-    margin: 0 1px;
+    margin:0 1px;
 }
 body{
     background-color: black;
@@ -47,7 +51,24 @@ div.navBar{
     height: 1.5cm;
     width: 40cm;
 }
+div.bardiv{
+    margin-top:1cm;
+    height:17cm;
+    margin-right:0.7cm;
+    margin-left:1cm;
+    position:absolute;
+}
 h3{
+    margin-top:0.3cm;
     position: absolute;
     margin-left:2cm;
+}
+input.range{
+    margin-left: 32cm;
+    margin-top:0.6cm;
+}
+h4{
+    margin-top:0.5cm;
+    position: absolute;
+    margin-left: 25cm;
 }

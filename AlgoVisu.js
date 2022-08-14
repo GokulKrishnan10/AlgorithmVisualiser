@@ -2,62 +2,27 @@ const root = ReactDOM.createRoot(
     document.getElementById('root')
 )
 
-
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
-let n = 1000;
-
-
-
-
-
-//var arr = [234, 43, 55, 63, 5, 6, 235, 547];
-
-//bblSort(arr);
-// function bblSort(arr){
-
-//     for(var i = 0; i < arr.length; i++){
-
-//       // Last i elements are already in place 
-//       for(var j = 0; j < ( arr.length - i -1 ); j++){
-
-//         // Checking if the item at present iteration
-//         // is greater than the next iteration
-//         if(arr[j] > arr[j+1]){
-
-//           // If the condition is true then swap them
-//           var temp = arr[j]
-//           arr[j] = arr[j + 1]
-//           arr[j+1] = temp
-//         }
-//       }
-//     }
-//     // Print the sorted array
-//     console.log(arr);
-//    }
-
-
-//    // This is our unsorted array
-//    var arr = [234, 43, 55, 63,  5, 6, 235, 547];
-
-
-//    // Now pass this array to the bblSort() function
-//    bblSort(arr);
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            arr: []
+            arr: [],
+            range: 100,
+            width: 1,
+            run: false,
+            point: "all"
         }
     }
 
     createArray = () => {
         const arr = []
-        for (let i = 0; i < 360; i++) {
+        for (let i = 0; i < this.state.range; i++) {
             arr.push(
-                getRandomArbitrary(0, 650) | 0
+                getRandomArbitrary(0, 600) | 0
             )
         }
         this.setState(
@@ -65,6 +30,12 @@ class App extends React.Component {
                 arr
             }
         )
+    }
+
+
+    componentDidMount() {
+        console.log("Creating Array On Loading")
+        this.createArray()
     }
 
     bblSort = function (arr) {
@@ -111,19 +82,6 @@ class App extends React.Component {
             newAnimations.push(animie.compare);
             newAnimations.push(animie.swap);
         }
-        // console.log('newAnimations length ' + newAnimations.length)
-        // console.log(newAnimations);
-        //for (let i = 0; i < 1000; i++) {
-        //   console.log('NO ' + animations[i].compare + ' and ' + animations[i].swap);
-        // }
-        // const arrayBars = document.getElementsByClassName('array_bar');
-        // arrayBars[10].style.backgroundColor = 'red';
-        // arrayBars[200].style.backgroundColor = 'red';
-        // var h1=arrayBars[10].style.height
-        // var h2=arrayBars[200].style.height
-        // console.log(h1+' and '+h2)
-        // arrayBars[10].style.height = h2;
-        // arrayBars[200].style.height = h1;
 
         for (let i = 0; i < newAnimations.length; i++) {
             const arrayBars = document.getElementsByClassName('array_bar');
@@ -144,31 +102,11 @@ class App extends React.Component {
                             var h2 = arrayBars[barTwoIdx].style.height
                             arrayBars[barOneIdx].style.height = h2;
                             arrayBars[barTwoIdx].style.height = h1;
-                            //barTwoStyle.backgroundColor = 'violet';
                         }, 1);
                     }
-                }, i * 3);
+                }, i * 10);
             }
         }
-        // for (let i = 0; i < animations.length; i++) {
-        //     console.log(i)
-        //     setTimeout(() => {
-        //         const { compare, swap } = animations[i];
-        //         const arrayBars = document.getElementsByClassName('array_bar');
-        //         arrayBars[compare[0]].style.backgroundColor = 'violet';
-        //         arrayBars[compare[1]].style.backgroundColor = 'violet';
-        //     }, i*4
-        //     )
-        // }
-        // else {
-        //     setTimeout(() => {
-        //         const [barOneIdx, barTwoIdx] = newAnimations[i];
-        //         var h1 = arrayBars[barOneIdx].style.height
-        //         var h2 = arrayBars[barTwoIdx].style.height
-        //         arrayBars[barOneIdx].style.height = h1;
-        //         arrayBars[barTwoIdx].style.height = h2;
-        //     }, i * 10);
-        // }
         /*   const { compare, swap } = animations[i];
            console.log("ith element is " + animations[i].compare)
            setTimeout(() => {
@@ -185,11 +123,19 @@ class App extends React.Component {
                }, (i + 1) * 10);
  
            }, i * 10);*/
-
     }
 
-    createClick = () => {
+    rangeChange = (event) => {
+        this.setState(
+            {
+                range: event.target.value
+            }
+        )
+        this.createArray()
+    }
 
+    create = () => {
+        console.log("On Loading......")
     }
 
     render() {
@@ -203,15 +149,18 @@ class App extends React.Component {
                     <button onClick={this.testAlgo} className="button2">Quick Sort</button>
                     <button onClick={this.testAlgo} className="button3">Merge Sort</button>
                     <button onClick={this.testAlgo} className="button4">Heap Sort</button>
-                    <h4></h4>
+                    <h4>Choose the range of values({this.state.range})</h4><input type="range" min="0" max="800" className="range" onChange={this.rangeChange} />
                 </div>
-                {
-                    arr.map((value, i) => (
-                        <div className="array_bar"
-                            key={i}
-                            style={{ height: `${value}px` }}></div>
-                    ))
-                }
+                <div className="bardiv" onLoad={this.createArray}>
+                    {
+                        arr.map((value, i) => (
+                            <div className="array_bar"
+                                key={i}
+                                style={{ height: `${value}px` }}
+                            ></div>
+                        ))
+                    }
+                </div>
             </div>
         )
     }
