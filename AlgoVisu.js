@@ -29,6 +29,99 @@ class Code extends React.Component {
     }
 }
 
+const styles={
+    array_contain:{
+        marginLeft:' 0.5cm',
+        position: 'absolute',
+        left:'10px'
+    },
+    button:{
+        fontWeight: 'bold',
+        marginTop:'0.4cm',
+        marginLeft: '9cm',
+        position:'absolute'
+    },
+    button1:{
+        fontWeight: 'bold',
+        marginLeft: '12cm',
+        marginTop:'0.4cm',
+        position:'absolute'
+    },
+    button2:{
+        fontWeight:'bold',
+        marginLeft: '15cm',
+        marginTop:'0.4cm',
+        position:'absolute'
+    },
+    button3:{
+        fontWeight: 'bold',
+        marginLeft: '18cm',
+        marginTop:'0.4cm',
+        position:'absolute'
+    },
+    button4:{
+        fontWeight: 'bold',
+        marginLeft: '21cm',
+        marginTop:'0.4cm',
+        position:'absolute'
+    },
+    array_bar:{
+        width:'2.25px',
+        backgroundColor: 'turquoise',
+        display: 'inline-block',
+        margin:'0.8px'
+    },
+    navBar:{
+        marginTop:'0.1cm',
+        color: 'aliceblue',
+        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+        fontStyle: 'oblique',
+        backgroundColor: 'navy',
+        height: '1.5cm',
+        width: '40cm'
+    },
+    bardiv:{
+        marginTop:'1cm',
+        height:'17cm',
+        marginRight:'0.7cm',
+        position:'absolute'
+    },
+
+    div1:{
+        position: 'absolute',
+        backgroundColor: 'white',
+        marginLeft:'10cm',
+        width:'17cm',
+        height: '12cm',
+        borderRadius:'45px'
+    },
+    nav1:{
+        aligItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'blue',
+        width:'17cm',
+        height:'01cm'
+    },
+    textarea1: {
+        fontSize: '16px',
+        resize: 'none',
+        width:'16cm',
+        height: '10cm',
+        color:'blue',
+        borderColor: 'white'
+    },
+    forceStop:{
+        position:'absolute',
+        marginTop:'0cm',
+        boxShadow: '2px 2px black',
+        cursor: 'pointer',
+        width:'4cm',
+        height: '1cm',
+        backgroundColor: 'red',
+        color: 'white'
+    }
+}
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -182,20 +275,20 @@ class App extends React.Component {
     render() {
         const { arr } = this.state
         return (
-            <div className="array_contain">
+            <div style={styles.array_contain}>
                 <div className="navBar" disabled={this.state.run ? "true" : ""}>
                     <h3>Sorting Algorithm Visualiser</h3>
-                    <button onClick={this.createArray} className="button">CREATE</button>
-                    <button onClick={this.testAlgo} className="button1">Bubble Sort</button>
-                    <button className="button2">Quick Sort</button>
-                    <button className="button3">Merge Sort</button>
-                    <button className="button4">Heap Sort</button>
-                    <button className="button5" onClick={this.viewCode}>CODE</button>
-                    <button className="button5" onClick={this.closeCode}>CLOSE</button>
-                    <h4>Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" className="range" onChange={this.rangeChange} />
+                    <button onClick={this.createArray} style={styles.button}>CREATE</button>
+                    <button onClick={this.testAlgo} style={styles.button1}>Bubble Sort</button>
+                    <button style={styles.button2}>Quick Sort</button>
+                    <button style={styles.button3}>Merge Sort</button>
+                    <button style={styles.button4}>Heap Sort</button>
+                    <button style={styles.button5} onClick={this.viewCode}>CODE</button>
+                    <button style={styles.button5} onClick={this.closeCode}>CLOSE</button>
+                    <h4>Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" style={styles.range} onChange={this.rangeChange} />
                 </div>
-                <div className="bardiv" onLoad={this.createArray}>
-                    <button className="forceStop">FORCE STOP</button>
+                <div style={styles.bardiv} onLoad={this.createArray}>
+                    <button style={styles.forceStop}>FORCE STOP</button>
                     <Code view={this.state.view} />
                     {
                         arr.map((value, i) => (
