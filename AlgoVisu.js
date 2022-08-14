@@ -18,8 +18,8 @@ class Code extends React.Component {
 
         return (
             <div className="div1" style={{display:this.props.view }}>
-                <nav className="nav1">Bubble Sort</nav>
-                <textarea readonly="true">
+                <nav style={styles.nav1}>Bubble Sort</nav>
+                <textarea readonly="true" style={styles.textarea1}>
                     {str}
                 </textarea>
             </div>
