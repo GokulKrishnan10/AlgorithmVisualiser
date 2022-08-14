@@ -18,7 +18,7 @@ class Code extends React.Component {
 
         return (
             <div className="div1" style={{display:this.props.view }}>
-                <nav style={styles.nav1}>Bubble Sort</nav>
+                <nav style={styles.nav1}><h3>Bubble Sort</h3></nav>
                 <textarea readonly="true" style={styles.textarea1}>
                     {str}
                 </textarea>
@@ -36,9 +36,9 @@ const styles={
         marginLeft:'2cm'
     },
     h4a:{
-        marginTop:'0.5cm',
+        marginTop:'0.2cm',
         position: 'absolute',
-        marginLeft: '25cm'
+        marginLeft: '29cm'
     },
     array_contain:{
         marginLeft:' 0.5cm',
@@ -72,6 +72,18 @@ const styles={
     button4:{
         fontWeight: 'bold',
         marginLeft: '21cm',
+        marginTop:'0.4cm',
+        position:'absolute'
+    },
+    button5:{
+        fontWeight:'bold',
+        marginLeft:'24cm',
+        marginTop:'0.4cm',
+        position:'absolute'
+    },
+    button6:{
+        fontWeight:'bold',
+        marginLeft:'26cm',
         marginTop:'0.4cm',
         position:'absolute'
     },
@@ -109,8 +121,10 @@ const styles={
         aligItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'blue',
-        width:'17cm',
-        height:'01cm'
+        width:'16.2cm',
+        height:'1cm',
+        fontFamily:'"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+        color:'white'
     },
     textarea1: {
         fontSize: '16px',
@@ -129,6 +143,10 @@ const styles={
         height: '1cm',
         backgroundColor: 'red',
         color: 'white'
+    },
+    range:{
+        marginLeft:'30cm',
+        marginTop:'0.9cm'
     }
 }
 
@@ -294,7 +312,7 @@ class App extends React.Component {
                     <button style={styles.button3}>Merge Sort</button>
                     <button style={styles.button4}>Heap Sort</button>
                     <button style={styles.button5} onClick={this.viewCode}>CODE</button>
-                    <button style={styles.button5} onClick={this.closeCode}>CLOSE</button>
+                    <button style={styles.button6} onClick={this.closeCode}>CLOSE</button>
                     <h4 style={styles.h4a}>Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" style={styles.range} onChange={this.rangeChange} />
                 </div>
                 <div style={styles.bardiv} onLoad={this.createArray}>

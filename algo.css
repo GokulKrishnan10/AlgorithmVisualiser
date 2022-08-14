@@ -8,6 +8,15 @@ body{
     background-color: black;
 }
 
+.div1{
+    position: absolute;
+    background-color: white;
+    margin-left:10cm;
+    width:17cm;
+    height:12cm;
+    border-radius:45px;
+}
+
 textarea {
     font-size: 16px;
     resize: none;
