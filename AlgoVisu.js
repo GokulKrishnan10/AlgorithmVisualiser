@@ -17,7 +17,7 @@ class Code extends React.Component {
     render() {
 
         return (
-            <div className="div1" style={{display:this.props.view }}>
+            <div className="div1" style={{ display: this.props.view }}>
                 <nav style={styles.nav1}><h3>Bubble Sort</h3></nav>
                 <textarea readonly="true" style={styles.textarea1}>
                     {str}
@@ -29,127 +29,133 @@ class Code extends React.Component {
     }
 }
 
-const styles={
-    h3a:{
-        marginTop:'0.3cm',
+const styles = {
+    h3a: {
+        marginTop: '0.3cm',
         position: 'absolute',
-        marginLeft:'2cm'
+        marginLeft: '2cm'
     },
-    h4a:{
-        marginTop:'0.2cm',
+    h4a: {
+        marginTop: '0.2cm',
         position: 'absolute',
         marginLeft: '29cm'
     },
-    array_contain:{
-        marginLeft:' 0.5cm',
+    array_contain: {
+        marginTop:'1.7cm',
+        marginLeft: ' 1.5cm',
         position: 'absolute',
-        left:'10px'
+        left: '10px',
+        width:'40cm'
     },
-    button:{
+    button: {
         fontWeight: 'bold',
-        marginTop:'0.4cm',
+        marginTop: '0.4cm',
         marginLeft: '9cm',
-        position:'absolute'
+        position: 'absolute'
     },
-    button1:{
+    button1: {
         fontWeight: 'bold',
         marginLeft: '12cm',
-        marginTop:'0.4cm',
-        position:'absolute'
+        marginTop: '0.4cm',
+        position: 'absolute'
     },
-    button2:{
-        fontWeight:'bold',
+    button2: {
+        fontWeight: 'bold',
         marginLeft: '15cm',
-        marginTop:'0.4cm',
-        position:'absolute'
+        marginTop: '0.4cm',
+        position: 'absolute'
     },
-    button3:{
+    button3: {
         fontWeight: 'bold',
         marginLeft: '18cm',
-        marginTop:'0.4cm',
-        position:'absolute'
+        marginTop: '0.4cm',
+        position: 'absolute'
     },
-    button4:{
+    button4: {
         fontWeight: 'bold',
         marginLeft: '21cm',
-        marginTop:'0.4cm',
-        position:'absolute'
+        marginTop: '0.4cm',
+        position: 'absolute'
     },
-    button5:{
-        fontWeight:'bold',
-        marginLeft:'24cm',
-        marginTop:'0.4cm',
-        position:'absolute'
+    button5: {
+        fontWeight: 'bold',
+        marginLeft: '24cm',
+        marginTop: '0.4cm',
+        position: 'absolute'
     },
-    button6:{
-        fontWeight:'bold',
-        marginLeft:'26cm',
-        marginTop:'0.4cm',
-        position:'absolute'
+    button6: {
+        fontWeight: 'bold',
+        marginLeft: '26cm',
+        marginTop: '0.4cm',
+        position: 'absolute'
     },
-    array_bar:{
-        width:'2.25px',
+    array_bar: {
+        width: '2.25px',
         backgroundColor: 'turquoise',
         display: 'inline-block',
-        margin:'0.8px'
+        margin: '0.8px'
     },
-    navBar:{
-        display:'block',
-        marginTop:'0.1cm',
+    navBar: {
+        display: 'inline-block',
+        position:'fixed',
+        top:0,
+        left:0,
+        zIndex:100,
         color: 'aliceblue',
         fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
         fontStyle: 'oblique',
         backgroundColor: 'navy',
         height: '1.5cm',
-        width: '40cm'
+        width: '40cm',
+        marginLeft:'0.1cm'
     },
-    bardiv:{
-        marginTop:'1cm',
-        height:'17cm',
-        marginRight:'0.7cm',
-        position:'absolute',
-        display:'block'
+    bardiv: {
+        marginTop: '1cm',
+        height: '17cm',
+        marginRight: '0.7cm',
+        position: 'absolute',
+        display: 'block'
     },
 
-    div1:{
+    div1: {
         position: 'absolute',
         backgroundColor: 'white',
-        marginLeft:'1cm',
-        width:'17cm',
+        marginLeft: '1cm',
+        width: '17cm',
         height: '12cm',
-        borderRadius:'45px'
+        borderRadius: '45px'
     },
-    nav1:{
+    nav1: {
         aligItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'blue',
-        width:'16.2cm',
-        height:'1cm',
-        fontFamily:'"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
-        color:'white'
+        width: '16.2cm',
+        height: '1cm',
+        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+        color: 'white'
     },
     textarea1: {
         fontSize: '16px',
         resize: 'none',
-        width:'16cm',
+        width: '16cm',
         height: '10cm',
-        color:'blue',
+        color: 'blue',
         borderColor: 'white',
-        marginLeft:'0.3cm'
+        marginLeft: '0.3cm'
     },
-    forceStop:{
-        position:'absolute',
-        marginTop:'0cm',
+    forceStop: {
+        position: 'absolute',
+        marginTop: '0cm',
         boxShadow: '2px 2px black',
         cursor: 'pointer',
-        width:'4cm',
+        width: '4cm',
         height: '1cm',
         backgroundColor: 'red',
         color: 'white'
     },
-    range:{
-        marginLeft:'30cm',
-        marginTop:'0.9cm'
+    range: {
+        marginLeft: '30cm',
+        marginTop: '0.9cm'
     }
 }
 
@@ -161,7 +167,7 @@ class App extends React.Component {
             range: 100,
             width: 1,
             view: 'none',
-            force:false
+            force: false
         }
     }
 
@@ -221,7 +227,7 @@ class App extends React.Component {
     }
 
     testAlgo = () => {
-        okay=true
+        okay = true
         console.log("IT's Selected or not: " + this.state.run);
         console.log("IT's Selected or not: " + this.state.run);
         const animations = this.bblSort(this.state.arr);
@@ -256,7 +262,7 @@ class App extends React.Component {
                 }, i * 10);
             }
         }
-        okay=false
+        okay = false
         /*   const { compare, swap } = animations[i];
            console.log("ith element is " + animations[i].compare)
            setTimeout(() => {
@@ -276,7 +282,7 @@ class App extends React.Component {
     }
 
     rangeChange = (event) => {
-        if(okay){
+        if (okay) {
             console.log('Clicked wrongly')
             this.clickForce
         }
@@ -301,18 +307,18 @@ class App extends React.Component {
         console.log(this.state.view)
     }
 
-    closeCode=()=>{
+    closeCode = () => {
         this.setState(
             {
-                view:"none"
+                view: "none"
             }
         )
     }
 
-    clickForce=()=>{
+    clickForce = () => {
         console.log('Force stop setting none')
         this.setState({
-            force:true
+            force: true
         })
         window.location.reload();
     }
@@ -320,7 +326,7 @@ class App extends React.Component {
     render() {
         const { arr } = this.state
         return (
-            <div style={styles.array_contain}>
+            <header>
                 <div style={styles.navBar}>
                     <h3 style={styles.h3a}>Sorting Algorithm Visualiser</h3>
                     <button onClick={this.createArray} style={styles.button}>CREATE</button>
@@ -332,23 +338,25 @@ class App extends React.Component {
                     <button style={styles.button6} onClick={this.closeCode}>CLOSE</button>
                     <h4 style={styles.h4a}>Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" style={styles.range} onChange={this.rangeChange} />
                 </div>
-                <button style={styles.forceStop} onClick={this.clickForce}>FORCE STOP</button>
-                <div style={styles.bardiv} onLoad={this.createArray}>
-                    <Code view={this.state.view} />
-                    {
-                        arr.map((value, i) => (
-                            <div className="array_bar"
-                                key={i}
-                                style={{ height: `${value}px` }}
-                            ></div>
-                        ))
-                    }
+                <div style={styles.array_contain}>
+                    <button style={styles.forceStop} onClick={this.clickForce}>FORCE STOP</button>
+                    <div style={styles.bardiv} onLoad={this.createArray}>
+                        <Code view={this.state.view} />
+                        {
+                            arr.map((value, i) => (
+                                <div className="array_bar"
+                                    key={i}
+                                    style={{ height: `${value}px` }}
+                                ></div>
+                            ))
+                        }
+                    </div>
                 </div>
-            </div>
+            </header>
         )
     }
 }
-let okay=false
+let okay = false
 root.render(
     <App />
 )
