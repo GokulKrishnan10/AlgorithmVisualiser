@@ -94,6 +94,7 @@ const styles={
         margin:'0.8px'
     },
     navBar:{
+        display:'block',
         marginTop:'0.1cm',
         color: 'aliceblue',
         fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
@@ -106,13 +107,14 @@ const styles={
         marginTop:'1cm',
         height:'17cm',
         marginRight:'0.7cm',
-        position:'absolute'
+        position:'absolute',
+        display:'block'
     },
 
     div1:{
         position: 'absolute',
         backgroundColor: 'white',
-        marginLeft:'10cm',
+        marginLeft:'1cm',
         width:'17cm',
         height: '12cm',
         borderRadius:'45px'
@@ -132,7 +134,8 @@ const styles={
         width:'16cm',
         height: '10cm',
         color:'blue',
-        borderColor: 'white'
+        borderColor: 'white',
+        marginLeft:'0.3cm'
     },
     forceStop:{
         position:'absolute',
@@ -157,7 +160,8 @@ class App extends React.Component {
             arr: [],
             range: 100,
             width: 1,
-            view: 'none'
+            view: 'none',
+            force:false
         }
     }
 
@@ -217,6 +221,7 @@ class App extends React.Component {
     }
 
     testAlgo = () => {
+        okay=true
         console.log("IT's Selected or not: " + this.state.run);
         console.log("IT's Selected or not: " + this.state.run);
         const animations = this.bblSort(this.state.arr);
@@ -251,6 +256,7 @@ class App extends React.Component {
                 }, i * 10);
             }
         }
+        okay=false
         /*   const { compare, swap } = animations[i];
            console.log("ith element is " + animations[i].compare)
            setTimeout(() => {
@@ -270,7 +276,10 @@ class App extends React.Component {
     }
 
     rangeChange = (event) => {
-
+        if(okay){
+            console.log('Clicked wrongly')
+            this.clickForce
+        }
         this.setState(
             {
                 range: event.target.value
@@ -300,6 +309,14 @@ class App extends React.Component {
         )
     }
 
+    clickForce=()=>{
+        console.log('Force stop setting none')
+        this.setState({
+            force:true
+        })
+        window.location.reload();
+    }
+
     render() {
         const { arr } = this.state
         return (
@@ -315,8 +332,8 @@ class App extends React.Component {
                     <button style={styles.button6} onClick={this.closeCode}>CLOSE</button>
                     <h4 style={styles.h4a}>Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" style={styles.range} onChange={this.rangeChange} />
                 </div>
+                <button style={styles.forceStop} onClick={this.clickForce}>FORCE STOP</button>
                 <div style={styles.bardiv} onLoad={this.createArray}>
-                    <button style={styles.forceStop}>FORCE STOP</button>
                     <Code view={this.state.view} />
                     {
                         arr.map((value, i) => (
@@ -331,7 +348,7 @@ class App extends React.Component {
         )
     }
 }
-
+let okay=false
 root.render(
     <App />
 )
