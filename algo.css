@@ -8,16 +8,6 @@ body{
     background-color: black;
 }
 
-h3{
-    margin-top:0.3cm;
-    position: absolute;
-    margin-left:2cm;
-}
-h4{
-    margin-top:0.5cm;
-    position: absolute;
-    margin-left: 25cm;
-}
 textarea {
     font-size: 16px;
     resize: none;
