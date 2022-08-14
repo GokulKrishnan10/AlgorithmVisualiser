@@ -6,6 +6,29 @@ function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+let str = 'class BubbleSort {\n\tpublic void bubbleSort(int arr[]){\n\t\tint n = arr.length;\n\t\tfor (int i = 0; i < n - 1; i++)\n\t\t\tfor (int j = 0; j < n - i - 1; j++)\n\t\t\t\tif (arr[j] > arr[j + 1]) {\n\t\t\t\tint temp = arr[j];\n\t\t\t\tarr[j] = arr[j + 1];\n\t\t\t\tarr[j + 1] = temp;\n}}}'
+
+class Code extends React.Component {
+    constructor(props) {
+        console.log("CLICKED HIDDEN ELEMENT")
+        super(props)
+    }
+
+    render() {
+
+        return (
+            <div className="div1" style={{display:this.props.view }}>
+                <nav className="nav1">Bubble Sort</nav>
+                <textarea readonly="true">
+                    {str}
+                </textarea>
+            </div>
+
+        )
+
+    }
+}
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -13,8 +36,7 @@ class App extends React.Component {
             arr: [],
             range: 100,
             width: 1,
-            run: false,
-            point: "all"
+            view: 'none'
         }
     }
 
@@ -38,7 +60,7 @@ class App extends React.Component {
         this.createArray()
     }
 
-    bblSort = function (arr) {
+    bblSort = (arr) => {
         const animations = []
         let c = 0
         for (var i = 0; i < arr.length; i++) {
@@ -74,6 +96,8 @@ class App extends React.Component {
     }
 
     testAlgo = () => {
+        console.log("IT's Selected or not: " + this.state.run);
+        console.log("IT's Selected or not: " + this.state.run);
         const animations = this.bblSort(this.state.arr);
         const newAnimations = [];
         console.log('Animations length ' + animations.length)
@@ -82,7 +106,6 @@ class App extends React.Component {
             newAnimations.push(animie.compare);
             newAnimations.push(animie.swap);
         }
-
         for (let i = 0; i < newAnimations.length; i++) {
             const arrayBars = document.getElementsByClassName('array_bar');
             const colorchange = (i % 3) !== 2;
@@ -126,6 +149,7 @@ class App extends React.Component {
     }
 
     rangeChange = (event) => {
+
         this.setState(
             {
                 range: event.target.value
@@ -138,20 +162,41 @@ class App extends React.Component {
         console.log("On Loading......")
     }
 
+    viewCode = () => {
+        this.setState(
+            {
+                view: "block"
+            }
+        )
+        console.log(this.state.view)
+    }
+
+    closeCode=()=>{
+        this.setState(
+            {
+                view:"none"
+            }
+        )
+    }
+
     render() {
         const { arr } = this.state
         return (
             <div className="array_contain">
-                <div className="navBar">
+                <div className="navBar" disabled={this.state.run ? "true" : ""}>
                     <h3>Sorting Algorithm Visualiser</h3>
                     <button onClick={this.createArray} className="button">CREATE</button>
                     <button onClick={this.testAlgo} className="button1">Bubble Sort</button>
-                    <button onClick={this.testAlgo} className="button2">Quick Sort</button>
-                    <button onClick={this.testAlgo} className="button3">Merge Sort</button>
-                    <button onClick={this.testAlgo} className="button4">Heap Sort</button>
-                    <h4>Choose the range of values({this.state.range})</h4><input type="range" min="0" max="800" className="range" onChange={this.rangeChange} />
+                    <button className="button2">Quick Sort</button>
+                    <button className="button3">Merge Sort</button>
+                    <button className="button4">Heap Sort</button>
+                    <button className="button5" onClick={this.viewCode}>CODE</button>
+                    <button className="button5" onClick={this.closeCode}>CLOSE</button>
+                    <h4>Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" className="range" onChange={this.rangeChange} />
                 </div>
                 <div className="bardiv" onLoad={this.createArray}>
+                    <button className="forceStop">FORCE STOP</button>
+                    <Code view={this.state.view} />
                     {
                         arr.map((value, i) => (
                             <div className="array_bar"
@@ -165,6 +210,7 @@ class App extends React.Component {
         )
     }
 }
+
 root.render(
     <App />
 )

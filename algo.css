@@ -1,5 +1,5 @@
 div.array_contain{
-    margin-left: 1cm;
+    margin-left: 0.5cm;
     position: absolute;
     left:10px;
 }
@@ -34,10 +34,10 @@ button.button4{
     position:absolute;
 }
 div.array_bar{
-    width:2px;
+    width:2.25px;
     background-color: turquoise;
     display: inline-block;
-    margin:0 1px;
+    margin:0.8px;
 }
 body{
     background-color: black;
@@ -55,7 +55,6 @@ div.bardiv{
     margin-top:1cm;
     height:17cm;
     margin-right:0.7cm;
-    margin-left:1cm;
     position:absolute;
 }
 h3{
@@ -71,4 +70,37 @@ h4{
     margin-top:0.5cm;
     position: absolute;
     margin-left: 25cm;
+}
+div.div1{
+    position: absolute;
+    background-color: white;
+    margin-left:10cm;
+    width:17cm;
+    height: 12cm;
+    border-radius:45px;
+}
+nav.nav1{
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    width:17cm;
+    height:01cm;
+}
+textarea {
+    font-size: 16px;
+    resize: none;
+    width:16cm;
+    height: 10cm;
+    color:blue;
+    border-color: white;
+}
+button.forceStop{
+    position:absolute;
+    margin-top:0cm;
+    box-shadow: 2px 2px black;
+    cursor: pointer;
+    width:4cm;
+    height: 1cm;
+    background-color: red;
+    color: white;
 }
