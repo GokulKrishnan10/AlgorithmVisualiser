@@ -286,8 +286,8 @@ class App extends React.Component {
         const { arr } = this.state
         return (
             <div style={styles.array_contain}>
-                <div className="navBar" disabled={this.state.run ? "true" : ""}>
-                    <h3 className="h3a">Sorting Algorithm Visualiser</h3>
+                <div style={styles.navBar}>
+                    <h3 style={styles.h3a}>Sorting Algorithm Visualiser</h3>
                     <button onClick={this.createArray} style={styles.button}>CREATE</button>
                     <button onClick={this.testAlgo} style={styles.button1}>Bubble Sort</button>
                     <button style={styles.button2}>Quick Sort</button>
@@ -295,7 +295,7 @@ class App extends React.Component {
                     <button style={styles.button4}>Heap Sort</button>
                     <button style={styles.button5} onClick={this.viewCode}>CODE</button>
                     <button style={styles.button5} onClick={this.closeCode}>CLOSE</button>
-                    <h4 className="h4a">Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" style={styles.range} onChange={this.rangeChange} />
+                    <h4 style={styles.h4a}>Choose the range of values({this.state.range})</h4><input type="range" min="100" max="400" style={styles.range} onChange={this.rangeChange} />
                 </div>
                 <div style={styles.bardiv} onLoad={this.createArray}>
                     <button style={styles.forceStop}>FORCE STOP</button>
