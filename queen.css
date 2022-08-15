@@ -1,0 +1,13 @@
+body{
+    background-color: midnightblue;
+}
+div img{
+    position:absolute;
+}
+h1.qn{
+    position: absolute;
+    margin-left:4cm;
+    margin-top:0.5cm;
+    color: white;
+    font-size: 40px;
+}
