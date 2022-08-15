@@ -43,7 +43,7 @@ class Board extends React.Component {
         )
     }
     ComponentDidMount = () => {
-        document.body.style.backgroundColor = 'red'
+        
     }
     render() {
         return (
