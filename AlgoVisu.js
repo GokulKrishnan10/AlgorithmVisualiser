@@ -269,7 +269,7 @@ class App extends React.Component {
         )
     }
 
-    testAlgo = () => {
+    testBubbleSort = () => {
         okay = true
         console.log("IT's Selected or not: " + this.state.run);
         console.log("IT's Selected or not: " + this.state.run);
@@ -373,7 +373,7 @@ class App extends React.Component {
                 <div style={styles.navBar}>
                     <h3 style={styles.h3a}>Sorting Algorithm Visualiser</h3>
                     <button onClick={this.createArray} style={styles.button}>CREATE</button>
-                    <button onClick={this.testAlgo} style={styles.button1}>Bubble Sort</button>
+                    <button onClick={this.testBubbleSort} style={styles.button1}>Bubble Sort</button>
                     <button style={styles.button2}>Quick Sort</button>
                     <button style={styles.button3}>Merge Sort</button>
                     <button style={styles.button4}>Heap Sort</button>
