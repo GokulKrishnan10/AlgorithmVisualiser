@@ -1,8 +1,7 @@
 div.array_bar{
     width:2.25px;
-    background-color: turquoise;
     display: inline-block;
-    margin:0.8px;
+    margin:0.5px;
 }
 body{
     background-color: black;

@@ -158,7 +158,7 @@ const styles = {
         marginTop: '0.9cm'
     }
 }
-
+const animations = []
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -183,6 +183,8 @@ class App extends React.Component {
                 arr
             }
         )
+        console.log(arr)
+        console.log(arr)
     }
 
 
@@ -191,46 +193,76 @@ class App extends React.Component {
         this.createArray()
     }
 
-    merge = (arr, l, m, r) => {
-        let n1 = m - l + 1;
-        let n2 = r - m;
-        let L = [];
-        let R = [];
-        for (let i = 0; i < n1; ++i)
-            L[i] = arr[l + i];
-        for (let j = 0; j < n2; ++j)
-            R[j] = arr[m + 1 + j];
-        let i = 0, j = 0;
+    merge = (arr, l, m, r, aux) => {
+        let i = l, j = m+1;
         let k = l;
-        while (i < n1 && j < n2) {
-            if (L[i] <= R[j]) {
-                arr[k] = L[i];
-                i++;
+        while (i <=m && j <=r) {
+            animations.push([i, j])
+            animations.push([i, j])
+            if (aux[i] <= aux[j]) {
+                animations.push([k, aux[i]])
+                arr[k++] = aux[i++];
             }
             else {
-                arr[k] = R[j];
-                j++;
+                animations.push([k, aux[j]])
+                arr[k++] = aux[j++];
             }
-            k++;
         }
-        while (i < n1) {
-            arr[k] = L[i];
-            i++;
-            k++;
+        while (i <=m) {
+            animations.push([i, i])
+            animations.push([i, i])
+            animations.push([k, aux[i]])
+            arr[k++] = aux[i++];
         }
-        while (j < n2) {
-            arr[k] = R[j];
-            j++;
-            k++;
+        while (j <=r) {
+            animations.push([j, j])
+            animations.push([j, j])
+            animations.push([k, aux[j]])
+            arr[k++] = aux[j++];
         }
     }
 
-    mergeSort = (arr, l, r) => {
+    mergeSort = (arr, l, r, aux) => {
         if (l < r) {
             let m = (l + r) / 2;
-            this.mergeSort(arr, l, m)
-            this.mergeSort(arr, m + 1, r)
-            this.merge(arr, l, m, r)
+            this.mergeSort(arr, l, m, aux)
+            this.mergeSort(arr, m + 1, r, aux)
+            this.merge(arr, l, m, r, aux)
+        }
+    }
+
+    testMergeSort = () => {
+        if (this.state.arr.length == 1) return this.state.arr;
+        console.log('Current array '+this.state.arr)
+        console.log('Checking Merge Sort')
+       
+        const aux=this.state.arr.slice()
+        this.mergeSort(this.state.arr, 0, this.state.arr.length - 1, aux,animations)
+        console.log("Sorted Array: "+this.state.arr)
+        console.log(animations)
+        for (let i = 0; i < animations.length; i++) {
+            console.log("INSIDE OF MERGESORT TEST")
+            console.log(animations[i])
+            const arrayBars = document.getElementsByClassName('array_bar');
+            const colorchange = (i % 3) !== 2;
+            if (colorchange) {
+                const [barOneIdx, barTwoIdx] = animations[i];
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                const color = (i % 3) === 0 ? 'red' : 'turquoise';
+                setTimeout(() => {
+                    console.log(color)
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                }, i * 10);
+            }
+            else {
+                setTimeout(() => {
+                    const [barOneIdx, newHeight] = animations[i];
+                    const barOneStyle = arrayBars[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`
+                }, i * 10)
+            }
         }
     }
 
@@ -274,6 +306,7 @@ class App extends React.Component {
         console.log("IT's Selected or not: " + this.state.run);
         console.log("IT's Selected or not: " + this.state.run);
         const animations = this.bubbleSort(this.state.arr);
+        console.log("Sorted array is "+this.state.arr)
         const newAnimations = [];
         console.log('Animations length ' + animations.length)
         for (const animie of animations) {
@@ -288,7 +321,7 @@ class App extends React.Component {
                 const [barOneIdx, barTwoIdx] = newAnimations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 const barTwoStyle = arrayBars[barTwoIdx].style;
-                const color = (i % 3) === 0 ? 'red' : 'turquoise';
+                const color = (i % 3) === 0 ? 'red' : barOneIdx%2==0?'violet':'white';
                 setTimeout(() => {
                     console.log(color)
                     barOneStyle.backgroundColor = color;
@@ -305,7 +338,6 @@ class App extends React.Component {
                 }, i * 10);
             }
         }
-        okay = false
         /*   const { compare, swap } = animations[i];
            console.log("ith element is " + animations[i].compare)
            setTimeout(() => {
@@ -325,10 +357,6 @@ class App extends React.Component {
     }
 
     rangeChange = (event) => {
-        if (okay) {
-            console.log('Clicked wrongly')
-            this.clickForce
-        }
         this.setState(
             {
                 range: event.target.value
@@ -375,7 +403,7 @@ class App extends React.Component {
                     <button onClick={this.createArray} style={styles.button}>CREATE</button>
                     <button onClick={this.testBubbleSort} style={styles.button1}>Bubble Sort</button>
                     <button style={styles.button2}>Quick Sort</button>
-                    <button style={styles.button3}>Merge Sort</button>
+                    <button onClick={this.testMergeSort} style={styles.button3}>Merge Sort</button>
                     <button style={styles.button4}>Heap Sort</button>
                     <button style={styles.button5} onClick={this.viewCode}>CODE</button>
                     <button style={styles.button6} onClick={this.closeCode}>CLOSE</button>
@@ -389,7 +417,7 @@ class App extends React.Component {
                             arr.map((value, i) => (
                                 <div className="array_bar"
                                     key={i}
-                                    style={{ height: `${value}px` }}
+                                    style={{ height: `${value}px`,backgroundColor:i%2==0?'violet':'white' }}
                                 ></div>
                             ))
                         }
