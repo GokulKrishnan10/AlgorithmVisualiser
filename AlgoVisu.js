@@ -195,12 +195,11 @@ class App extends React.Component {
     sortMerge = (arr) => {
         const animations = []
         if (arr.length <= 1) return arr;
-        const auxillary = arr.slice()
-        this.mergeSort(arr, 0, arr.length - 1, auxillary, animations)
+        this.mergeSort(arr, 0, arr.length - 1,  animations)
         return animations
     }
 
-    merge = (arr, l, m, r, aux, animations) => {
+    merge = (arr, l, m, r, animations) => {
         let i = 0, j = 0;
         let k = l;
         let L = []
@@ -262,22 +261,19 @@ class App extends React.Component {
         // }
     }
 
-    mergeSort = (arr, l, r, aux, animations) => {
+    mergeSort = (arr, l, r, animations) => {
         if (l == r) return;
         let m = Math.floor((l + r) / 2);
-        this.mergeSort(arr, l, m, aux, animations)
-        this.mergeSort(arr, m + 1, r, aux, animations)
-        this.merge(arr, l, m, r, aux, animations)
+        this.mergeSort(arr, l, m, animations)
+        this.mergeSort(arr, m + 1, r,animations)
+        this.merge(arr, l, m, r, animations)
     }
 
     testMergeSort = () => {
         const animations = this.sortMerge(this.state.arr)
-        console.log("Sorted Array: " + this.state.arr)
-        console.log(animations)
         for (let i = 0; i < animations.length; i++) {
-            console.log("INSIDE OF MERGESORT TEST")
-            console.log(animations[i])
             const arrayBars = document.getElementsByClassName('array_bar');
+            console.log(animations[i])
             const colorchange = (i % 3) !== 2;
             if (colorchange) {
                 const [barOneIdx, barTwoIdx] = animations[i];
@@ -366,7 +362,7 @@ class App extends React.Component {
                             var h2 = arrayBars[barTwoIdx].style.height
                             arrayBars[barOneIdx].style.height = h2;
                             arrayBars[barTwoIdx].style.height = h1;
-                        }, 1);
+                        },10);
                     }
                 }, i * 10);
             }
