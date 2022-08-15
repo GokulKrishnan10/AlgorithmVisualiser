@@ -41,11 +41,11 @@ const styles = {
         marginLeft: '29cm'
     },
     array_contain: {
-        marginTop:'1.7cm',
+        marginTop: '1.7cm',
         marginLeft: ' 1.5cm',
         position: 'absolute',
         left: '10px',
-        width:'40cm'
+        width: '40cm'
     },
     button: {
         fontWeight: 'bold',
@@ -97,17 +97,17 @@ const styles = {
     },
     navBar: {
         display: 'inline-block',
-        position:'fixed',
-        top:0,
-        left:0,
-        zIndex:100,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 100,
         color: 'aliceblue',
         fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
         fontStyle: 'oblique',
         backgroundColor: 'navy',
         height: '1.5cm',
         width: '40cm',
-        marginLeft:'0.1cm'
+        marginLeft: '0.1cm'
     },
     bardiv: {
         marginTop: '1cm',
@@ -191,7 +191,50 @@ class App extends React.Component {
         this.createArray()
     }
 
-    bblSort = (arr) => {
+    merge = (arr, l, m, r) => {
+        let n1 = m - l + 1;
+        let n2 = r - m;
+        let L = [];
+        let R = [];
+        for (let i = 0; i < n1; ++i)
+            L[i] = arr[l + i];
+        for (let j = 0; j < n2; ++j)
+            R[j] = arr[m + 1 + j];
+        let i = 0, j = 0;
+        let k = l;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            }
+            else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+
+    mergeSort = (arr, l, r) => {
+        if (l < r) {
+            let m = (l + r) / 2;
+            this.mergeSort(arr, l, m)
+            this.mergeSort(arr, m + 1, r)
+            this.merge(arr, l, m, r)
+        }
+    }
+
+    bubbleSort = (arr) => {
         const animations = []
         let c = 0
         for (var i = 0; i < arr.length; i++) {
@@ -230,7 +273,7 @@ class App extends React.Component {
         okay = true
         console.log("IT's Selected or not: " + this.state.run);
         console.log("IT's Selected or not: " + this.state.run);
-        const animations = this.bblSort(this.state.arr);
+        const animations = this.bubbleSort(this.state.arr);
         const newAnimations = [];
         console.log('Animations length ' + animations.length)
         for (const animie of animations) {
