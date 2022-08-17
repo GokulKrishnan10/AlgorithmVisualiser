@@ -218,8 +218,8 @@ class App extends React.Component {
         for (let j = 0; j < n2; ++j)
             R.push(arr[m + 1 + j]);
         while (i < n1 && j < n2) {
-            animations.push([i, j])
-            animations.push([i, j])
+            animations.push([l + i, m + 1 + j])
+            animations.push([l + i, m + 1 + j])
             if (L[i] <= R[j]) {
                 animations.push([k, L[i]])
                 arr[k++] = L[i++];
@@ -230,14 +230,14 @@ class App extends React.Component {
             }
         }
         while (i < n1) {
-            animations.push([i, i])
-            animations.push([i, i])
+            animations.push([i + l, i + l])
+            animations.push([i + l, i + l])
             animations.push([k, L[i]])
             arr[k++] = L[i++];
         }
         while (j < n2) {
-            animations.push([j, j])
-            animations.push([j, j])
+            animations.push([m + 1 + j, m + 1 + j])
+            animations.push([m + 1 + j, m + 1 + j])
             animations.push([k, R[j]])
             arr[k++] = R[j++];
         }
@@ -291,7 +291,7 @@ class App extends React.Component {
                     console.log(color)
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i * 3);
+                }, i * 5);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
@@ -453,9 +453,11 @@ class App extends React.Component {
                             arr.map((value, i) => (
                                 <div className="array_bar"
                                     key={i}
-                                    style={{ height: `${value}px`, backgroundColor: 'turquoise',width:'2.25px',
-                                    display: 'inline-block',
-                                    margin:'0.5px' }}
+                                    style={{
+                                        height: `${value}px`, backgroundColor: 'turquoise', width: '2.25px',
+                                        display: 'inline-block',
+                                        margin: '0.5px'
+                                    }}
                                 ></div>
                             ))
                         }
