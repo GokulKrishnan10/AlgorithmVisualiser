@@ -241,6 +241,7 @@ class App extends React.Component {
             animations.push([k, R[j]])
             arr[k++] = R[j++];
         }
+        //NOT WORKING CODE
         // let i = l, j = m + 1;
         // let k = l;
         // while (i <= m && j <= r) {
@@ -320,18 +321,6 @@ class App extends React.Component {
             }
         }
         console.log('HELLO ' + c + " iterations");
-        // const arr1 = []
-        // const map = {}
-        // map.firstName = [1, 2];
-        // map.lastName = [1, 200];
-        // map.age = 20
-        // // for(var i=0;i<map.length;i++){
-        // //     console.log('ith object is '+animations[i])
-        // // }
-        // arr1.push(map)
-        // console.log(arr1)
-        // console.log('0th element ' + arr1[0].firstName + ' and size is ' + arr1.length)
-        // console.log(' 0th element in animations is '+animations[1].compare)
         return (
             animations
         )
