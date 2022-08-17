@@ -17,7 +17,14 @@ class Code extends React.Component {
     render() {
 
         return (
-            <div className="div1" style={{ display: this.props.view }}>
+            <div className="div1" style={{
+                display: this.props.view, position: 'absolute',
+                backgroundColor: ' white',
+                marginLeft: '10cm',
+                width: '17cm',
+                height: '12cm',
+                borderRadius: '45px'
+            }}>
                 <nav style={styles.nav1}><h3>Bubble Sort</h3></nav>
                 <textarea readonly="true" style={styles.textarea1}>
                     {str}
@@ -195,7 +202,7 @@ class App extends React.Component {
     sortMerge = (arr) => {
         const animations = []
         if (arr.length <= 1) return arr;
-        this.mergeSort(arr, 0, arr.length - 1,  animations)
+        this.mergeSort(arr, 0, arr.length - 1, animations)
         return animations
     }
 
@@ -224,8 +231,8 @@ class App extends React.Component {
         }
         while (i < n1) {
             animations.push([i, i])
-             animations.push([i, i])
-             animations.push([k, L[i]])
+            animations.push([i, i])
+            animations.push([k, L[i]])
             arr[k++] = L[i++];
         }
         while (j < n2) {
@@ -265,7 +272,7 @@ class App extends React.Component {
         if (l == r) return;
         let m = Math.floor((l + r) / 2);
         this.mergeSort(arr, l, m, animations)
-        this.mergeSort(arr, m + 1, r,animations)
+        this.mergeSort(arr, m + 1, r, animations)
         this.merge(arr, l, m, r, animations)
     }
 
@@ -284,13 +291,13 @@ class App extends React.Component {
                     console.log(color)
                     barOneStyle.backgroundColor = color;
                     barTwoStyle.backgroundColor = color;
-                }, i*3);
+                }, i * 3);
             } else {
                 setTimeout(() => {
                     const [barOneIdx, newHeight] = animations[i];
                     const barOneStyle = arrayBars[barOneIdx].style;
                     barOneStyle.height = `${newHeight}px`
-                },i*5)
+                }, i * 5)
             }
         }
     }
@@ -362,7 +369,7 @@ class App extends React.Component {
                             var h2 = arrayBars[barTwoIdx].style.height
                             arrayBars[barOneIdx].style.height = h2;
                             arrayBars[barTwoIdx].style.height = h1;
-                        },10);
+                        }, 10);
                     }
                 }, i * 10);
             }
@@ -446,7 +453,9 @@ class App extends React.Component {
                             arr.map((value, i) => (
                                 <div className="array_bar"
                                     key={i}
-                                    style={{ height: `${value}px`, backgroundColor: 'turquoise' }}
+                                    style={{ height: `${value}px`, backgroundColor: 'turquoise',width:'2.25px',
+                                    display: 'inline-block',
+                                    margin:'0.5px' }}
                                 ></div>
                             ))
                         }
