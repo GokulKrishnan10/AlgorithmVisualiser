@@ -52,7 +52,8 @@ const styles = {
         marginLeft: ' 1.5cm',
         position: 'absolute',
         left: '10px',
-        width: '40cm'
+        width: '40cm',
+        backgroundColor:'black'
     },
     button: {
         fontWeight: 'bold',
@@ -286,10 +287,9 @@ class App extends React.Component {
                             arrayBars[barTwoIdx].style.height = h1;
                         },1);
                     }
-                }, i * 5);
+                },i*3);
             } 
         }
-        
     }
 
     sortMerge = (arr) => {
