@@ -7,7 +7,7 @@ function getRandomArbitrary(min, max) {
 }
 
 let str = 'class BubbleSort {\n\tpublic void bubbleSort(int arr[]){\n\t\tint n = arr.length;\n\t\tfor (int i = 0; i < n - 1; i++)\n\t\t\tfor (int j = 0; j < n - i - 1; j++)\n\t\t\t\tif (arr[j] > arr[j + 1]) {\n\t\t\t\tint temp = arr[j];\n\t\t\t\tarr[j] = arr[j + 1];\n\t\t\t\tarr[j + 1] = temp;\n}}}'
-
+let com=0
 class Code extends React.Component {
     constructor(props) {
         console.log("CLICKED HIDDEN ELEMENT")
@@ -58,42 +58,49 @@ const styles = {
         fontWeight: 'bold',
         marginTop: '0.4cm',
         marginLeft: '9cm',
+        boxShadow:'0px 8px 15px rgba(71, 142, 255, 0.1)',
         position: 'absolute'
     },
     button1: {
         fontWeight: 'bold',
         marginLeft: '12cm',
         marginTop: '0.4cm',
+        boxShadow:'0px 8px 15px rgba(71, 142, 255, 0.1)',
         position: 'absolute'
     },
     button2: {
         fontWeight: 'bold',
         marginLeft: '15cm',
         marginTop: '0.4cm',
+        boxShadow:'0px 8px 15px rgba(71, 142, 255, 0.1)',
         position: 'absolute'
     },
     button3: {
         fontWeight: 'bold',
         marginLeft: '18cm',
         marginTop: '0.4cm',
+        boxShadow:'0px 8px 15px rgba(71, 142, 255, 0.1)',
         position: 'absolute'
     },
     button4: {
         fontWeight: 'bold',
         marginLeft: '21cm',
         marginTop: '0.4cm',
+        boxShadow:'0px 8px 15px rgba(71, 142, 255, 0.1)',
         position: 'absolute'
     },
     button5: {
         fontWeight: 'bold',
         marginLeft: '24cm',
         marginTop: '0.4cm',
+        boxShadow:'0px 8px 15px rgba(71, 142, 255, 0.1)',
         position: 'absolute'
     },
     button6: {
         fontWeight: 'bold',
         marginLeft: '26cm',
         marginTop: '0.4cm',
+        boxShadow:'0px 8px 15px rgba(71, 142, 255, 0.1)',
         position: 'absolute'
     },
     array_bar: {
@@ -165,7 +172,6 @@ const styles = {
         marginTop: '0.9cm'
     }
 }
-const animations = []
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -197,6 +203,93 @@ class App extends React.Component {
     componentDidMount() {
         console.log("Creating Array On Loading")
         this.createArray()
+    }
+
+    randPartition=(arr,s,e,animations)=>{
+        let pivotIndex=Math.floor(getRandomArbitrary(s,e));
+        console.log("rand value is "+pivotIndex)
+        animations.push([pivotIndex,e])
+        animations.push([pivotIndex,e])
+        animations.push([pivotIndex,e])
+       // animations.push([pivotIndex,e])
+        let temp=arr[pivotIndex]
+        arr[pivotIndex]=arr[e]
+        arr[e]=temp
+        return this.partition(arr,s,e,animations)
+    }
+
+    partition=(arr,s,e,animations)=>{
+        let pivot=arr[e];
+        let pIndex=s;
+        for(let i=s;i<e;i++){
+            if(arr[i]<=pivot){
+                com++;
+                animations.push([pIndex,i])
+                animations.push([pIndex,i])
+                animations.push([pIndex,i])
+                //animations.push([pIndex,i])
+                let t=arr[i];
+                arr[i]=arr[pIndex];
+                arr[pIndex]=t;
+                pIndex++;
+            }
+        }com++;
+        animations.push([pIndex,e])
+        animations.push([pIndex,e])
+        animations.push([pIndex,e])
+       // animations.push([pIndex,e])
+        let t=arr[pIndex];
+        arr[pIndex]=arr[e];
+        arr[e]=t;
+        return pIndex;
+    }
+
+    quickSort=(arr,s,e,animations)=>{
+        if(s<e){
+            let pIndex=this.partition(arr,s,e,animations)
+            this.quickSort(arr,s,pIndex-1,animations)
+            this.quickSort(arr,pIndex+1,e,animations)
+        }
+    }
+
+    sortQuick=(arr)=>{
+        const animations=[]
+        if(arr.length<=1) return arr
+        this.quickSort(arr,0,arr.length-1,animations)
+        console.log(com+" comparitions for "+arr.length+" elements")
+        return animations;
+    }
+
+
+    testQuickSort=()=>{
+        const animations = this.sortQuick(this.state.arr)
+        console.log("Sorted array is "+this.state.arr)
+        for (let i = 0; i < animations.length; i++) {
+            const arrayBars = document.getElementsByClassName('array_bar');
+            //console.log(animations[i])
+            const colorchange = (i % 3) !== 2;
+            if (colorchange) {
+                const [barOneIdx, barTwoIdx] = animations[i];
+                const barOneStyle = arrayBars[barOneIdx].style;
+                const barTwoStyle = arrayBars[barTwoIdx].style;
+                const color = (i % 3) === 0 ? 'red' : 'turquoise';
+                setTimeout(() => {
+                  //  console.log(color)
+                    barOneStyle.backgroundColor = color;
+                    barTwoStyle.backgroundColor = color;
+                    if (color === 'red') {
+                        setTimeout(() => {
+                            const [barOneIdx, barTwoIdx] = animations[i];
+                            var h1 = arrayBars[barOneIdx].style.height
+                            var h2 = arrayBars[barTwoIdx].style.height
+                            arrayBars[barOneIdx].style.height = h2;
+                            arrayBars[barTwoIdx].style.height = h1;
+                        },1);
+                    }
+                }, i * 5);
+            } 
+        }
+        
     }
 
     sortMerge = (arr) => {
@@ -427,7 +520,7 @@ class App extends React.Component {
                     <h3 style={styles.h3a}>Sorting Algorithm Visualiser</h3>
                     <button onClick={this.createArray} style={styles.button}>CREATE</button>
                     <button onClick={this.testBubbleSort} style={styles.button1}>Bubble Sort</button>
-                    <button style={styles.button2}>Quick Sort</button>
+                    <button onClick={this.testQuickSort} style={styles.button2}>Quick Sort</button>
                     <button onClick={this.testMergeSort} style={styles.button3}>Merge Sort</button>
                     <button style={styles.button4}>Heap Sort</button>
                     <button style={styles.button5} onClick={this.viewCode}>CODE</button>
