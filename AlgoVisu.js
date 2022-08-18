@@ -247,7 +247,7 @@ class App extends React.Component {
 
     quickSort=(arr,s,e,animations)=>{
         if(s<e){
-            let pIndex=this.partition(arr,s,e,animations)
+            let pIndex=this.randPartition(arr,s,e,animations)
             this.quickSort(arr,s,pIndex-1,animations)
             this.quickSort(arr,pIndex+1,e,animations)
         }
